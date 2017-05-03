@@ -52,7 +52,7 @@ You'll need the following dependencies:
     TODO
 
 
-Then, download the latest release on `pypi <https://pypi.python.org/pypi/powa-web/>`_,  uncompress it, and copy the sample configuration file:
+Then download the latest release on `pypi <https://pypi.python.org/pypi/powa-web/>`_,  uncompress it, and copy the sample configuration file:
 
 .. parsed-literal::
 
@@ -78,7 +78,7 @@ Powa-web will search its config as either of these files, in this order:
 * ./powa-web.conf
 
 You'll then be noticed of the address and port on which the UI is available.
-The default is 0.0.0.0:888, as indicated in this message:
+The default is 0.0.0.0:8888, as indicated in this message:
 
 * [I 161105 20:27:39 powa-web:12] Starting powa-web on 0.0.0.0:8888
 
@@ -136,20 +136,35 @@ servers (dict):
 
 cookie_secret (str):
   A secret key used to secure cookies transiting between the web browser and the
-  server.
+  server. 
 
-  .. code-block:: python
-
-    cookie_secret="SECRET_STRING"
 
 The following options are optional:
 
 port (int):
-  The port on which the UI will be available (default 8888)
+  The port on which the UI will be available (default 8888).
 
 
 address (str):
-  The IP address on which the UI will be available (default 0.0.0.0)
+  The IP address on which the UI will be available. This must be one of the IP addresses of the powa-web server. Default is 0.0.0.0 and means that the UI is available from the outside. Set to '127.0.0.1' or '::1' to restrict access to the current computer. If you have a firewall, do not forget to add a rule to grant access.
+
+Example:
+
+  .. code-block:: python
+
+    servers={
+      'main': {
+        'host': 'localhost',
+        'port': '5432',
+        'database': 'powa'
+      }
+    }
+    cookie_secret="ed2xoow8shet3eiyai4Odo2OTama2y"
+    port=8887
+    address='127.0.0.1'
+
+
+
 
 See also:
 
